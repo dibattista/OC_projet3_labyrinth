@@ -5,15 +5,17 @@ import pygame
 
 pygame.init()
 
-# import Macgyver, Guardian, Object
+# Afficher le labyrinth
 # Create class to move Macgyver
-# create method to catch Object
-# create method if Macgyver has all Object
-#   and if he is on place where is the Guardian
+# create method to find the place of object
+# create method to store the object Macgyver find
+# create a if Macgyver has all Object
+#   and if he is on place where the Guardian are
 #   message winning
 # if else Macgyver doesn't has all 3 objects and he is on the
-#   place where is the Guardian
+#   place where the Guardian are
 #   message lose
+# if the game was close change the position of object
 
 # iniatilise the game
 display_width = 800
@@ -27,8 +29,8 @@ clock = pygame.time.Clock()
 mac_gyver = pygame.image.load('ressource/MacGyver.png')
 def mac(x,y):
     gameDisplay.blit(mac_gyver, (x,y))
-x = (display_width * 0.45)
-y = (display_height * 0.8)
+x = (display_width * 0)
+y = (display_height * 0)
 
 # start the game
 crashed = False

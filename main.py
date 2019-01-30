@@ -1,9 +1,7 @@
 #! /usr/bin/env pyhton3
 # coding: utf-8
-
-import pygame
-
-pygame.init()
+import Labyrinth as lab
+import Mac_gyver as mac
 
 # Afficher le labyrinth
 # Create class to move Macgyver
@@ -17,36 +15,14 @@ pygame.init()
 #   message lose
 # if the game was close change the position of object
 
-# iniatilise the game
-display_width = 800
-display_height = 600
+if __name__ == "__main__":
+    # print(str(lab.laby))
+    print(mac.player.moveRight(1))
 
-gameDisplay = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption('Let same MacGyver')
-clock = pygame.time.Clock()
 
-# display image
-mac_gyver = pygame.image.load('ressource/MacGyver.png')
-def mac(x,y):
-    gameDisplay.blit(mac_gyver, (x,y))
-x = (display_width * 0)
-y = (display_height * 0)
-
-# start the game
-crashed = False
-
-while not crashed:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            crashed = True
-
-    mac(x,y)
-    pygame.display.update()
-    clock.tick(60)
-
-# stop the game
-pygame.quit()
-quit()
-
-# if __name__ == "__main__":
-
+    # nouvelle instance de labyrinth
+    # class GameManager avec les régles de jeu
+    # lui mettre instance de labyrinth
+    # class Mac_gyver: attribut pour savoir ou tu es, les coordonés y et x
+    #   et les méthod pour bouger
+    # GameManager game faire une boucle des actions lui demander de faire une action et répondre à l'action

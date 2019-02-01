@@ -3,26 +3,24 @@ import os
 # Creer une classe Labyrinth qui dans son constructeur 
 # ouvre le fichier texte et stocke chaque ligne dans une liste
 
-class Labyrinth:
-    file = ""
 
+class Labyrinth:
     def __init__(self, data_file):
         self.file = data_file
+        self.store_lines = []
 
-    def launch_labyrinth(self):
-        x = []
         with open(self.file) as files:
             lines = files.readlines()
-        for line in lines:
-            print(line)
-            y = [i for i in line.strip()]
-            x.append(y)
+            for y in lines:
+                x = [i for i in y]
+                self.store_lines.append(x)
 
-        return(x)
     
     def __str__(self):
-        return str(self.launch_labyrinth())
-    
+        list_labyrinth = self.store_lines
+        str1 = '\n'.join(str(''.join(e)) for e in list_labyrinth)
+
+        return str1
 
 laby = Labyrinth('labyrinth.txt')
 

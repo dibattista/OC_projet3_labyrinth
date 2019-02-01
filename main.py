@@ -1,7 +1,7 @@
 #! /usr/bin/env pyhton3
 # coding: utf-8
 import Labyrinth as lab
-import Mac_gyver as mac
+import Player as macgyver
 
 # Afficher le labyrinth
 # Create class to move Macgyver
@@ -16,8 +16,8 @@ import Mac_gyver as mac
 # if the game was close change the position of object
 
 if __name__ == "__main__":
-    # print(str(lab.laby))
-    print(mac.player.moveRight(1))
+    print(lab.laby)
+    macgyver.playe.moveUp()
 
 
     # nouvelle instance de labyrinth

@@ -12,7 +12,7 @@ class Labyrinth:
         with open(self.file) as files:
             lines = files.readlines()
             for y in lines:
-                x = [i for i in y]
+                x = [i for i in y.strip()]
                 self.store_lines.append(x)
 
     

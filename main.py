@@ -18,7 +18,11 @@ import Player as macgyver
 if __name__ == "__main__":
     print(lab.laby)
     macgyver.playe.moveUp()
-
+    # macgyver.playe.moveDown()
+    macgyver.playe.moveRight()
+    # macgyver.playe.moveLeft()
+    # macgyver.playe.movePlayer()
+    macgyver.playe.playerPosition()
 
     # nouvelle instance de labyrinth
     # class GameManager avec les régles de jeu

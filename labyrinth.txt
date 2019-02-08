@@ -4,9 +4,9 @@ X      XXXXXXXX
 X             X
 XXXXXX        X
 X             X
-X    XXX      X
-X        XXX  X
-X        X    X
+X    X N      X
+X        XXE  X
+X        T    X
 XXXX     X    X
 X        XXXXXX
 X             X

@@ -1,8 +1,8 @@
 #! /usr/bin/env pyhton3
 # coding: utf-8
-import Labyrinth as lab
+from Labyrinth import Labyrinth
 import Player as macgyver
-
+from GameManager import GameManager
 # Afficher le labyrinth
 # Create class to move Macgyver
 # create method to find the place of object
@@ -16,13 +16,15 @@ import Player as macgyver
 # if the game was close change the position of object
 
 if __name__ == "__main__":
-    print(lab.laby)
-    macgyver.playe.moveUp()
-    # macgyver.playe.moveDown()
-    macgyver.playe.moveRight()
-    # macgyver.playe.moveLeft()
-    # macgyver.playe.movePlayer()
-    macgyver.playe.playerPosition()
+    laby = Labyrinth('labyrinth.txt')
+    gamer = GameManager(laby)
+    gamer.lauch_game()
+    # macgyver.playe.moveUp()
+    # # macgyver.playe.moveDown()
+    # macgyver.playe.moveRight()
+    # # macgyver.playe.moveLeft()
+    # # macgyver.playe.movePlayer()
+    # macgyver.playe.playerPosition()
 
     # nouvelle instance de labyrinth
     # class GameManager avec les régles de jeu

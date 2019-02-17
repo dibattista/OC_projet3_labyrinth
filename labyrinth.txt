@@ -1,12 +1,12 @@
 XXXXXXXXXXXXXXX
-X         G   X
+X            GX
 X      XXXXXXXX
 X             X
 XXXXXX        X
 X             X
-X    X N      X
-X        XXE  X
-X        T    X
+X    X        X
+X        XX   X
+X             X
 XXXX     X    X
 X        XXXXXX
 X             X

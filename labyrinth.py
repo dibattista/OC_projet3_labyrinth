@@ -1,14 +1,11 @@
 # coding=utf-8
-import random
-import os
-from Guardian import Guardian
 
-# Creer une classe Labyrinth qui dans son constructeur 
-# ouvre le fichier texte et stocke chaque ligne dans une liste
+from Guardian import Guardian
 
 
 class Labyrinth:
     WALL = 'X'
+
     def __init__(self, data_file):
         self.file = data_file
         self.store_lines = []
@@ -29,8 +26,7 @@ class Labyrinth:
                     horizontal = self.store_lines.index(line)
                     vertical = line.index(positionx)
         return (vertical, horizontal)
-    
-    # Mettre le jouer ou autre symbole à ça nouvelle place
+
     def write_symbole(self, x, y, symbol):
         self.store_lines[y][x] = symbol
 
@@ -42,8 +38,16 @@ class Labyrinth:
         for y, line in enumerate(self.store_lines):
             for x, symbole in enumerate(line):
                 if symbole == ' ':
-                    store_empty_box.append([y, x])
+                    store_empty_box.append((y, x))
         return store_empty_box
+    
+    def all_box(self):
+        store_box = []
+        for y, line in enumerate(self.store_lines):
+            for x, symbole in enumerate(line):
+                if symbole == 'X':
+                    store_box.append((y, x))
+        return store_box
 
     def __str__(self):
         list_labyrinth = self.store_lines

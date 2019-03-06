@@ -1,32 +1,29 @@
 #! /usr/bin/env pyhton3
 # coding: utf-8
-import pygame
-from pygame.locals import *
 
+import argparse
+
+# pourquoi en ./main.py ne trouve pas le python 3
 from Labyrinth import Labyrinth
-import Player as macgyver
 from GameManager import GameManager
+from Gui import Gui
 
-pygame.init()
-
-#Ouverture de la fenêtre Pygame
-fenetre = pygame.display.set_mode((640, 480))
-
-#Chargement et collage du fond
-fond = pygame.image.load("background.jpg").convert()
-fenetre.blit(fond, (0, 0))
-
-#Rafraîchissement de l'écran
-pygame.display.flip()
-
-#BOUCLE INFINIE
-continuer = 1
-while continuer:
-	continuer = int(input())
+ap = argparse.ArgumentParser()
+ap.add_argument('-g', '--gui',
+                help="start graphic game", action='store_true')
+args = ap.parse_args()
 
 
-# if __name__ == "__main__":
-#     pass
-    # laby = Labyrinth('labyrinth.txt')
-    # gamer = GameManager(laby)
-    # gamer.lauch_game()
+def main():
+    laby = Labyrinth('labyrinth.txt')
+    if args.gui:
+        gui = Gui(laby)
+        gui.launch_game()
+    else:
+        print('In else')
+        gamer = GameManager(laby)
+        gamer.lauch_game()
+
+
+if __name__ == "__main__":
+    main()

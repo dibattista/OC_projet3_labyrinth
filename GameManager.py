@@ -5,7 +5,9 @@ from Player import Player
 from Object import Object
 from Guardian import Guardian
 
+
 class GameManager:
+
     def __init__(self, laby):
         self.laby = laby
         player_position = laby.getSymbolPosition(Player.GAMER)
@@ -13,7 +15,6 @@ class GameManager:
         self.guardian = Guardian()
 
     def lauch_game(self):
-        # add object to laaby
         store_object = ['N', 'T', 'E']
         for ob in store_object:
             needle_ramdom_position = random.choice(self.laby.emptyBox())
@@ -24,16 +25,17 @@ class GameManager:
             print(self.laby)
             # Old position of gamer
             old_position = self.macgyver.getPosition()
-            # New position og gamer
+            print('old_position', old_position)
+            # New position of gamer
             new_position = self.macgyver.movePlayer()
+            print('new_position', new_position)
 
             check_symbol = self.laby.getSymbol(new_position[0], new_position[1])
-            old_possition_line_player = self.laby.getSymbolPosition(Player.GAMER)[1]
 
             # If a player find a wall try again
             if check_symbol == self.laby.WALL:
+                self.macgyver.moveBack()
                 print('Sorry wrong place try again')
-                # Bug si rencontre un mur et rejoue refait une erreur???
                 continue
 
             # If a player find a object store it and delete from laby
@@ -46,7 +48,7 @@ class GameManager:
 
             # If the player find the gardian
             elif check_symbol == Guardian.GARDIAN:
-                self.guardian.sleeping_gardian(self.macgyver.bag)
+                self.guardian.sleeping_guardian(self.macgyver.bag)
 
             else:
                 # replace symbole by space

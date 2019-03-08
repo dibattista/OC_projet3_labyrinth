@@ -11,7 +11,7 @@ class GameManager:
     def __init__(self, laby):
         self.laby = laby
         player_position = laby.getSymbolPosition(Player.GAMER)
-        self.macgyver = Player(player_position[0], player_position[1], [])
+        self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
 
     def launch_game(self):
@@ -30,7 +30,8 @@ class GameManager:
             new_position = self.macgyver.movePlayer()
             print('new_position', new_position)
 
-            check_symbol = self.laby.getSymbol(new_position[0], new_position[1])
+            check_symbol = self.laby.getSymbol(new_position[0],
+                                               new_position[1])
 
             # If a player find a wall try again
             if check_symbol == self.laby.WALL:
@@ -39,9 +40,11 @@ class GameManager:
                 continue
 
             # If a player find a object store it and delete from laby
-            elif check_symbol == Object.TUBE or check_symbol == Object.ETHER or check_symbol == Object.NEEDLE:
+            elif check_symbol == Object.TUBE or \
+                    check_symbol == Object.ETHER or \
+                    check_symbol == Object.NEEDLE:
                 self.macgyver.addObject(check_symbol)
-    
+
                 self.laby.write_symbole(
                     new_position[0], new_position[1], Player.GAMER)
                 self.laby.write_symbole(old_position[0], old_position[1], ' ')
@@ -54,6 +57,5 @@ class GameManager:
                 # replace symbole by space
                 self.laby.write_symbole(
                     new_position[0], new_position[1], Player.GAMER)
-                
-                self.laby.write_symbole(old_position[0], old_position[1], ' ')
 
+                self.laby.write_symbole(old_position[0], old_position[1], ' ')

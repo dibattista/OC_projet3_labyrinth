@@ -2,9 +2,11 @@
 
 from pygame.locals import *
 
+
 class Player:
     GAMER = 'M'
-    def __init__(self, x, y, bag):
+
+    def __init__(self, x, y):
         self.position_x = x
         self.position_y = y
         self.bag = []
@@ -17,7 +19,7 @@ class Player:
     def moveUp(self):
         self.position_y -= 1
         return self.position_x, self.position_y
-    
+
     def moveDown(self):
         self.position_y += 1
         return self.position_x, self.position_y
@@ -29,19 +31,19 @@ class Player:
     def moveLeft(self):
         self.position_x -= 1
         return self.position_x, self.position_y
-    
+
     def getPosition(self):
         return self.position_x, self.position_y
-    
+
     def addObject(self, tool):
         self.bag.append(tool)
         print('self.bag', self.bag)
         return self.bag
-    
+
     def moveBack(self):
         self.position_x = self.old_x
         self.position_y = self.old_y
-    
+
     def movePlayer(self):
         self.old_x = self.position_x
         self.old_y = self.position_y
@@ -53,7 +55,7 @@ class Player:
                 return self.moveRight()
             elif player_move == 'l':
                 return self.moveLeft()
-            elif player_move == 'u': 
+            elif player_move == 'u':
                 return self.moveUp()
             elif player_move == 'd':
                 return self.moveDown()
@@ -72,5 +74,3 @@ class Player:
             return self.moveLeft()
         elif key == K_DOWN:
             return self.moveDown()
-
-        

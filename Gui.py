@@ -1,4 +1,5 @@
 # coding: utf-8
+
 import pygame
 from pygame.locals import *
 import random
@@ -14,7 +15,7 @@ class Gui:
     def __init__(self, laby):
         self.laby = laby
         player_position = laby.getSymbolPosition(Player.GAMER)
-        self.macgyver = Player(player_position[0], player_position[1], [])
+        self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
 
         #############################
@@ -28,14 +29,6 @@ class Gui:
 
         self.window = pygame.display.set_mode(size)
         pygame.display.set_caption("My First Game")
-
-
-
-        # mettre les valeurs du sac
-
-        # self.surf = pygame.Surface((400, 200))
-        # self.surf.fill((255, 255, 255))
-        # self.surf.get_rect()
 
         # Load all images
         self.fond = pygame.image.load("gui/background.png").convert()
@@ -73,17 +66,30 @@ class Gui:
         self.store_emptyBox.remove(self.ether_ramdom_position)
         self.pipe_ramdom_position = random.choice(self.store_emptyBox)
 
-        self.list_gadget = [(self.needle_ramdom_position, self.needle), (self.ether_ramdom_position, self.ether), (self.pipe_ramdom_position, self.pipe)]
+        self.list_gadget = [
+            (self.needle_ramdom_position, self.needle),
+            (self.ether_ramdom_position, self.ether),
+            (self.pipe_ramdom_position, self.pipe)
+        ]
 
         # Write the position in laby
-        self.needle_ramdom_position_laby = (int(self.needle_ramdom_position[0] / 40), int(self.needle_ramdom_position[1] / 40))
-        self.laby.write_symbole(self.needle_ramdom_position_laby[0], self.needle_ramdom_position_laby[1], 'N')
+        self.needle_ramdom_position_laby = (
+            int(self.needle_ramdom_position[0] / 40),
+            int(self.needle_ramdom_position[1] / 40))
+        self.laby.write_symbole(self.needle_ramdom_position_laby[0],
+                                self.needle_ramdom_position_laby[1], 'N')
 
-        self.ether_ramdom_position_laby = (int(self.ether_ramdom_position[0] / 40), int(self.ether_ramdom_position[1] / 40))
-        self.laby.write_symbole(self.ether_ramdom_position_laby[0], self.ether_ramdom_position_laby[1], 'E')
+        self.ether_ramdom_position_laby = (
+            int(self.ether_ramdom_position[0] / 40),
+            int(self.ether_ramdom_position[1] / 40))
+        self.laby.write_symbole(self.ether_ramdom_position_laby[0],
+                                self.ether_ramdom_position_laby[1], 'E')
 
-        self.pipe_ramdom_position_laby = (int(self.pipe_ramdom_position[0] / 40), int(self.pipe_ramdom_position[1] / 40))
-        self.laby.write_symbole(self.pipe_ramdom_position_laby[0], self.pipe_ramdom_position_laby[1], 'T')
+        self.pipe_ramdom_position_laby = (
+            int(self.pipe_ramdom_position[0] / 40),
+            int(self.pipe_ramdom_position[1] / 40))
+        self.laby.write_symbole(self.pipe_ramdom_position_laby[0],
+                                self.pipe_ramdom_position_laby[1], 'T')
 
         pygame.display.flip()
 
@@ -106,7 +112,8 @@ class Gui:
 
     def popup_message(self, text):
         pygame.draw.rect(self.window, (0, 0, 0), (180, 200, 400, 200))
-        self.window.blit(self.font_text_winner.render(text, True, (255, 255, 255)), (280, 280))
+        self.window.blit(self.font_text_winner.render(
+            text, True, (255, 255, 255)), (280, 280))
         pygame.display.update()
 
     def draw_menu(self):
@@ -114,12 +121,14 @@ class Gui:
         # draw rectangle to delete old value of self.mac_bag)
         pygame.draw.rect(self.window, (0, 0, 0), (620, 40, 260, 300))
 
-        text_menu = self.font_menu.render('Ready to help Mac?', True, (255, 255, 255))
-        tex_movement = self.font_menu.render('To move use the keyboard arrow keys.', True, (255, 255, 255))
+        text_menu = self.font_menu.render(
+            'Ready to help Mac?', True, (255, 255, 255))
+        tex_movement = self.font_menu.render(
+            'To move, use the keyboard arrow keys.', True, (255, 255, 255))
         text_bag_one = self.font_menu.render(
             'You need to find 3 gadgets in the', True, (255, 255, 255))
         text_bag_two = self.font_menu.render(
-            'labyrinth to asleep the guardian.', True, (255, 255, 255))
+            'labyrinth to asleep the guardian and win.', True, (255, 255, 255))
 
         self.window.blit(text_menu, (620, 50))
         self.window.blit(tex_movement, (620, 100))
@@ -127,22 +136,13 @@ class Gui:
         self.window.blit(text_bag_two, (620, 160))
 
         # Update the number of gadget
-        text_bag_three = self.font_menu.render('You have: ' + str(self.mac_bag) + ' gadget.', True, (255, 255, 255))
+        text_bag_three = self.font_menu.render(
+            'You have: ' + str(self.mac_bag) + ' gadget.',
+            True, (255, 255, 255))
         self.window.blit(text_bag_three, (620, 180))
         pygame.display.update()
 
     def launch_game(self):
-        ###################
-        # A Faire:
-        # Ecrire les objects dans le laby (comme version terminal) - Fait
-        # Recuper la position des object - fait
-        # faire le if pour stocket les obejct et les effacer - fait
-        # Finir le jeu avec le gardian - fait
-        # pop up winn or dead - commend on fait une pop????? -fait
-        # mettre un autre texte pour dire au jouer le nombre d'objet qu'il a - fait
-        # Flake8 corriger les erreurs
-        # push sur github
-        ###################
         carry_on = 1
         finish_game = 0
 
@@ -156,7 +156,8 @@ class Gui:
                 elif event.type == KEYDOWN:
                     old_position = self.macgyver.getPosition()
                     new_position = self.macgyver.movePlayerGui(event.key)
-                    check_symbol = self.laby.getSymbol(new_position[0], new_position[1])
+                    check_symbol = self.laby.getSymbol(
+                        new_position[0], new_position[1])
 
                     # If wall
                     if check_symbol == 'X':
@@ -165,13 +166,16 @@ class Gui:
                         continue
 
                     # If a player find a object store it and delete
-                    elif check_symbol == Object.TUBE or check_symbol == Object.ETHER or check_symbol == Object.NEEDLE:
+                    elif check_symbol == Object.TUBE \
+                            or check_symbol == Object.ETHER \
+                            or check_symbol == Object.NEEDLE:
                         self.macgyver.addObject(check_symbol)
                         self.mac_bag = len(self.macgyver.bag)
 
                         self.laby.write_symbole(
                             new_position[0], new_position[1], Player.GAMER)
-                        self.laby.write_symbole(old_position[0], old_position[1], ' ')
+                        self.laby.write_symbole(
+                            old_position[0], old_position[1], ' ')
                         # Delete object in graphic
                         x = new_position[0] * 40
                         y = new_position[1] * 40
@@ -183,13 +187,15 @@ class Gui:
                     # If the player find the guardian
                     elif check_symbol == Guardian.GARDIAN:
                         finish_game = 1
-                        result = self.guardian.macgyver_vs_guardian(self.macgyver.bag)
+                        result = self.guardian.macgyver_vs_guardian(
+                            self.macgyver.bag)
                         msg = result
 
                     else:
                         self.laby.write_symbole(
                             new_position[0], new_position[1], Player.GAMER)
-                        self.laby.write_symbole(old_position[0], old_position[1], ' ')
+                        self.laby.write_symbole(
+                            old_position[0], old_position[1], ' ')
 
             # Display images
 
@@ -214,5 +220,3 @@ class Gui:
                 self.popup_message(msg)
 
             pygame.display.flip()
-
-

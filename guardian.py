@@ -1,6 +1,3 @@
-import pygame
-
-
 class Guardian:
     GARDIAN = 'G'
 
@@ -18,6 +15,3 @@ class Guardian:
         else:
             print(lose_msg)
             return lose_msg
-
-
-

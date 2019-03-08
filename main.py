@@ -1,9 +1,8 @@
-#! /usr/bin/env pyhton3
+#! /usr/bin/env python3
 # coding: utf-8
 
 import argparse
 
-# pourquoi en ./main.py ne trouve pas le python 3
 from Labyrinth import Labyrinth
 from GameManager import GameManager
 from Gui import Gui

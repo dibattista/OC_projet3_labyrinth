@@ -40,7 +40,7 @@ class Labyrinth:
                 if symbole == ' ':
                     store_empty_box.append((y, x))
         return store_empty_box
-    
+
     def all_box(self):
         store_box = []
         for y, line in enumerate(self.store_lines):
@@ -54,4 +54,3 @@ class Labyrinth:
         str1 = '\n'.join(str(''.join(e)) for e in list_labyrinth)
 
         return str1
-

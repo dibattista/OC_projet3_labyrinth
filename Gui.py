@@ -17,6 +17,7 @@ class Gui:
         player_position = laby.get_symbol_position(Player.GAMER)
         self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
+        self.object = Object(laby)
 
         #############################
         # Init pygame
@@ -52,45 +53,13 @@ class Gui:
             self.store_wall_position.append((y_wall, x_wall))
 
         ######################################
-        # Write Object
-        # find the empty box to find the random positions of graphics objects
-        self.store_emptyBox = []
-        for box in self.laby.empty_box():
-            x = box[0] * 40
-            y = box[1] * 40
-            self.store_emptyBox.append((y, x))
-
-        # Store graphic random position
-        self.needle_ramdom_position = random.choice(self.store_emptyBox)
-        self.store_emptyBox.remove(self.needle_ramdom_position)
-        self.ether_ramdom_position = random.choice(self.store_emptyBox)
-        self.store_emptyBox.remove(self.ether_ramdom_position)
-        self.pipe_ramdom_position = random.choice(self.store_emptyBox)
-
+        # Find random position object in graphic and write in laby
         self.list_gadget = [
-            (self.needle_ramdom_position, self.needle),
-            (self.ether_ramdom_position, self.ether),
-            (self.pipe_ramdom_position, self.pipe)
+            (self.object.needle_ramdom_position, self.needle),
+            (self.object.ether_ramdom_position, self.ether),
+            (self.object.pipe_ramdom_position, self.pipe)
         ]
-
-        # Write the position in laby
-        self.needle_ramdom_position_laby = (
-            int(self.needle_ramdom_position[0] / 40),
-            int(self.needle_ramdom_position[1] / 40))
-        self.laby.write_symbol(self.needle_ramdom_position_laby[0],
-                               self.needle_ramdom_position_laby[1], 'N')
-
-        self.ether_ramdom_position_laby = (
-            int(self.ether_ramdom_position[0] / 40),
-            int(self.ether_ramdom_position[1] / 40))
-        self.laby.write_symbol(self.ether_ramdom_position_laby[0],
-                               self.ether_ramdom_position_laby[1], 'E')
-
-        self.pipe_ramdom_position_laby = (
-            int(self.pipe_ramdom_position[0] / 40),
-            int(self.pipe_ramdom_position[1] / 40))
-        self.laby.write_symbol(self.pipe_ramdom_position_laby[0],
-                               self.pipe_ramdom_position_laby[1], 'T')
+        self.object.write_object_in_laby()
 
         pygame.display.flip()
 

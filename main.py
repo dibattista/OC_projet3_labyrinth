@@ -19,7 +19,6 @@ def main():
         gui = Gui(laby)
         gui.launch_game()
     else:
-        print('In else')
         gamer = GameManager(laby)
         gamer.launch_game()
 

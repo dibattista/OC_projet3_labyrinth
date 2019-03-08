@@ -1,7 +1,5 @@
 # coding=utf-8
 
-from Guardian import Guardian
-
 
 class Labyrinth:
     WALL = 'X'
@@ -9,7 +7,6 @@ class Labyrinth:
     def __init__(self, data_file):
         self.file = data_file
         self.store_lines = []
-        self.gardian = Guardian()
 
         with open(self.file) as files:
             lines = files.readlines()
@@ -19,21 +16,21 @@ class Labyrinth:
 
     # x vertical
     # y horizontal
-    def getSymbolPosition(self, symbol):
+    def get_symbol_position(self, symbol):
         for line in self.store_lines:
-            for positionx in line:
-                if positionx == symbol:
+            for position_x in line:
+                if position_x == symbol:
                     horizontal = self.store_lines.index(line)
-                    vertical = line.index(positionx)
+                    vertical = line.index(position_x)
         return (vertical, horizontal)
 
-    def write_symbole(self, x, y, symbol):
+    def write_symbol(self, x, y, symbol):
         self.store_lines[y][x] = symbol
 
-    def getSymbol(self, x, y):
+    def get_symbol(self, x, y):
         return self.store_lines[y][x]
 
-    def emptyBox(self):
+    def empty_box(self):
         store_empty_box = []
         for y, line in enumerate(self.store_lines):
             for x, symbole in enumerate(line):
@@ -44,8 +41,8 @@ class Labyrinth:
     def all_box(self):
         store_box = []
         for y, line in enumerate(self.store_lines):
-            for x, symbole in enumerate(line):
-                if symbole == 'X':
+            for x, symbol in enumerate(line):
+                if symbol == 'X':
                     store_box.append((y, x))
         return store_box
 

@@ -14,7 +14,7 @@ class Gui:
 
     def __init__(self, laby):
         self.laby = laby
-        player_position = laby.getSymbolPosition(Player.GAMER)
+        player_position = laby.get_symbol_position(Player.GAMER)
         self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
 
@@ -54,7 +54,7 @@ class Gui:
         # Write Object
         # find the empty box to find the random positions of graphics objects
         self.store_emptyBox = []
-        for box in self.laby.emptyBox():
+        for box in self.laby.empty_box():
             x = box[0] * 40
             y = box[1] * 40
             self.store_emptyBox.append((y, x))
@@ -76,39 +76,35 @@ class Gui:
         self.needle_ramdom_position_laby = (
             int(self.needle_ramdom_position[0] / 40),
             int(self.needle_ramdom_position[1] / 40))
-        self.laby.write_symbole(self.needle_ramdom_position_laby[0],
+        self.laby.write_symbol(self.needle_ramdom_position_laby[0],
                                 self.needle_ramdom_position_laby[1], 'N')
 
         self.ether_ramdom_position_laby = (
             int(self.ether_ramdom_position[0] / 40),
             int(self.ether_ramdom_position[1] / 40))
-        self.laby.write_symbole(self.ether_ramdom_position_laby[0],
+        self.laby.write_symbol(self.ether_ramdom_position_laby[0],
                                 self.ether_ramdom_position_laby[1], 'E')
 
         self.pipe_ramdom_position_laby = (
             int(self.pipe_ramdom_position[0] / 40),
             int(self.pipe_ramdom_position[1] / 40))
-        self.laby.write_symbole(self.pipe_ramdom_position_laby[0],
+        self.laby.write_symbol(self.pipe_ramdom_position_laby[0],
                                 self.pipe_ramdom_position_laby[1], 'T')
 
         pygame.display.flip()
 
     # Player
     def draw_character(self):
-        player_position = self.laby.getSymbolPosition(Player.GAMER)
+        player_position = self.laby.get_symbol_position(Player.GAMER)
         self.position_perso.x = player_position[0] * 40
         self.position_perso.y = player_position[1] * 40
 
     # Guard
     def draw_guard(self):
-        position_guard = self.laby.getSymbolPosition(Guardian.GARDIAN)
+        position_guard = self.laby.get_symbol_position(Guardian.GARDIAN)
         x_guard = position_guard[1] * 40
         y_guard = position_guard[0] * 40
         self.window.blit(self.guard, (y_guard, x_guard))
-
-    def text_objects(self, text, font):
-        text_surface = font.render(text, True, (255, 255, 255))
-        return text_surface, text_surface.get_rect()
 
     def popup_message(self, text):
         pygame.draw.rect(self.window, (0, 0, 0), (180, 200, 400, 200))
@@ -154,14 +150,14 @@ class Gui:
                     carry_on = 0
 
                 elif event.type == KEYDOWN:
-                    old_position = self.macgyver.getPosition()
-                    new_position = self.macgyver.movePlayerGui(event.key)
-                    check_symbol = self.laby.getSymbol(
+                    old_position = self.macgyver.get_position()
+                    new_position = self.macgyver.move_player_gui(event.key)
+                    check_symbol = self.laby.get_symbol(
                         new_position[0], new_position[1])
 
                     # If wall
                     if check_symbol == 'X':
-                        self.macgyver.moveBack()
+                        self.macgyver.move_back()
                         print('sorry try again')
                         continue
 
@@ -169,12 +165,12 @@ class Gui:
                     elif check_symbol == Object.TUBE \
                             or check_symbol == Object.ETHER \
                             or check_symbol == Object.NEEDLE:
-                        self.macgyver.addObject(check_symbol)
+                        self.macgyver.add_object(check_symbol)
                         self.mac_bag = len(self.macgyver.bag)
 
-                        self.laby.write_symbole(
+                        self.laby.write_symbol(
                             new_position[0], new_position[1], Player.GAMER)
-                        self.laby.write_symbole(
+                        self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
                         # Delete object in graphic
                         x = new_position[0] * 40
@@ -192,9 +188,9 @@ class Gui:
                         msg = result
 
                     else:
-                        self.laby.write_symbole(
+                        self.laby.write_symbol(
                             new_position[0], new_position[1], Player.GAMER)
-                        self.laby.write_symbole(
+                        self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
 
             # Display images

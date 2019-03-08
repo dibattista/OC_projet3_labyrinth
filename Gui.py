@@ -30,6 +30,7 @@ class Gui:
         self.window = pygame.display.set_mode(size)
         pygame.display.set_caption("My First Game")
 
+        #############################
         # Load all images
         self.fond = pygame.image.load("gui/background.png").convert()
         self.wall = pygame.image.load("gui/wall.png").convert_alpha()
@@ -37,9 +38,9 @@ class Gui:
         self.needle = pygame.image.load("gui/needle.png").convert_alpha()
         self.pipe = pygame.image.load("gui/pipe.png").convert_alpha()
         self.guard = pygame.image.load("gui/guard.png").convert_alpha()
-
-        self.perso = pygame.image.load("gui/macgyver.png").convert()
-        self.position_perso = self.perso.get_rect()
+        # character setup
+        self.character = pygame.image.load("gui/macgyver.png").convert()
+        self.position_character = self.character.get_rect()
         self.mac_bag = 0
 
         #####################################
@@ -77,27 +78,27 @@ class Gui:
             int(self.needle_ramdom_position[0] / 40),
             int(self.needle_ramdom_position[1] / 40))
         self.laby.write_symbol(self.needle_ramdom_position_laby[0],
-                                self.needle_ramdom_position_laby[1], 'N')
+                               self.needle_ramdom_position_laby[1], 'N')
 
         self.ether_ramdom_position_laby = (
             int(self.ether_ramdom_position[0] / 40),
             int(self.ether_ramdom_position[1] / 40))
         self.laby.write_symbol(self.ether_ramdom_position_laby[0],
-                                self.ether_ramdom_position_laby[1], 'E')
+                               self.ether_ramdom_position_laby[1], 'E')
 
         self.pipe_ramdom_position_laby = (
             int(self.pipe_ramdom_position[0] / 40),
             int(self.pipe_ramdom_position[1] / 40))
         self.laby.write_symbol(self.pipe_ramdom_position_laby[0],
-                                self.pipe_ramdom_position_laby[1], 'T')
+                               self.pipe_ramdom_position_laby[1], 'T')
 
         pygame.display.flip()
 
     # Player
     def draw_character(self):
         player_position = self.laby.get_symbol_position(Player.GAMER)
-        self.position_perso.x = player_position[0] * 40
-        self.position_perso.y = player_position[1] * 40
+        self.position_character.x = player_position[0] * 40
+        self.position_character.y = player_position[1] * 40
 
     # Guard
     def draw_guard(self):
@@ -208,7 +209,7 @@ class Gui:
 
             # Player
             self.draw_character()
-            self.window.blit(self.perso, self.position_perso)
+            self.window.blit(self.character, self.position_character)
 
             # Guard
             self.draw_guard()

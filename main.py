@@ -22,7 +22,7 @@ def main():
     else:
         print('In else')
         gamer = GameManager(laby)
-        gamer.lauch_game()
+        gamer.launch_game()
 
 
 if __name__ == "__main__":

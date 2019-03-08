@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import random
 
+
 from Player import Player
 from Guardian import Guardian
 from Object import Object
@@ -19,16 +20,22 @@ class Gui:
         #############################
         # Init pygame
         pygame.init()
-        size = (800, 600)
+        pygame.font.init()
+        size = (900, 600)
+        # Font
+        self.font_text_winner = pygame.font.SysFont('Arial', 25)
+        self.font_menu = pygame.font.SysFont('Arial', 15)
+
         self.window = pygame.display.set_mode(size)
         pygame.display.set_caption("My First Game")
 
-        # Guidelines
-        pygame.font.init()
-        myfont = pygame.font.SysFont('Comic Sans MS', 30)
-        textsurface = myfont.render(('Hello ' + 'Player'), False, (255, 255, 255))
-        self.window.blit(textsurface, (610, 50))
+
+
         # mettre les valeurs du sac
+
+        # self.surf = pygame.Surface((400, 200))
+        # self.surf.fill((255, 255, 255))
+        # self.surf.get_rect()
 
         # Load all images
         self.fond = pygame.image.load("gui/background.png").convert()
@@ -40,6 +47,7 @@ class Gui:
 
         self.perso = pygame.image.load("gui/macgyver.png").convert()
         self.position_perso = self.perso.get_rect()
+        self.mac_bag = 0
 
         #####################################
         # Find all the position of the wall
@@ -92,18 +100,51 @@ class Gui:
         y_guard = position_guard[0] * 40
         self.window.blit(self.guard, (y_guard, x_guard))
 
+    def text_objects(self, text, font):
+        text_surface = font.render(text, True, (255, 255, 255))
+        return text_surface, text_surface.get_rect()
+
+    def popup_message(self, text):
+        pygame.draw.rect(self.window, (0, 0, 0), (180, 200, 400, 200))
+        self.window.blit(self.font_text_winner.render(text, True, (255, 255, 255)), (280, 280))
+        pygame.display.update()
+
+    def draw_menu(self):
+        # Menu
+        # draw rectangle to delete old value of self.mac_bag)
+        pygame.draw.rect(self.window, (0, 0, 0), (620, 40, 260, 300))
+
+        text_menu = self.font_menu.render('Ready to help Mac?', True, (255, 255, 255))
+        tex_movement = self.font_menu.render('To move use the keyboard arrow keys.', True, (255, 255, 255))
+        text_bag_one = self.font_menu.render(
+            'You need to find 3 gadgets in the', True, (255, 255, 255))
+        text_bag_two = self.font_menu.render(
+            'labyrinth to asleep the guardian.', True, (255, 255, 255))
+
+        self.window.blit(text_menu, (620, 50))
+        self.window.blit(tex_movement, (620, 100))
+        self.window.blit(text_bag_one, (620, 140))
+        self.window.blit(text_bag_two, (620, 160))
+
+        # Update the number of gadget
+        text_bag_three = self.font_menu.render('You have: ' + str(self.mac_bag) + ' gadget.', True, (255, 255, 255))
+        self.window.blit(text_bag_three, (620, 180))
+        pygame.display.update()
+
     def launch_game(self):
         ###################
         # A Faire:
         # Ecrire les objects dans le laby (comme version terminal) - Fait
         # Recuper la position des object - fait
-        # faire le if pour stocket les obejct et les effacer
-        # Finir le jeu avec le gardian
-        # mettre un autre texte pour dire au jouer le nombre d'objet qu'il a
+        # faire le if pour stocket les obejct et les effacer - fait
+        # Finir le jeu avec le gardian - fait
+        # pop up winn or dead - commend on fait une pop????? -fait
+        # mettre un autre texte pour dire au jouer le nombre d'objet qu'il a - fait
         # Flake8 corriger les erreurs
         # push sur github
         ###################
         carry_on = 1
+        finish_game = 0
 
         while carry_on:
             pygame.time.Clock().tick(30)
@@ -125,8 +166,9 @@ class Gui:
 
                     # If a player find a object store it and delete
                     elif check_symbol == Object.TUBE or check_symbol == Object.ETHER or check_symbol == Object.NEEDLE:
-                        print('new_position', new_position)
                         self.macgyver.addObject(check_symbol)
+                        self.mac_bag = len(self.macgyver.bag)
+
                         self.laby.write_symbole(
                             new_position[0], new_position[1], Player.GAMER)
                         self.laby.write_symbole(old_position[0], old_position[1], ' ')
@@ -140,8 +182,9 @@ class Gui:
 
                     # If the player find the guardian
                     elif check_symbol == Guardian.GARDIAN:
-                        self.guardian.macgyver_vs_guardian(self.macgyver.bag)
-                    #image tu as gagner ou perdu
+                        finish_game = 1
+                        result = self.guardian.macgyver_vs_guardian(self.macgyver.bag)
+                        msg = result
 
                     else:
                         self.laby.write_symbole(
@@ -149,7 +192,9 @@ class Gui:
                         self.laby.write_symbole(old_position[0], old_position[1], ' ')
 
             # Display images
+
             self.window.blit(self.fond, (0, 0))
+            self.draw_menu()
 
             # Wall
             for wall in self.store_wall_position:
@@ -165,6 +210,8 @@ class Gui:
 
             # Guard
             self.draw_guard()
+            if finish_game == 1:
+                self.popup_message(msg)
 
             pygame.display.flip()
 

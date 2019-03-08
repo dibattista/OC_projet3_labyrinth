@@ -14,7 +14,7 @@ class GameManager:
         self.macgyver = Player(player_position[0], player_position[1], [])
         self.guardian = Guardian()
 
-    def lauch_game(self):
+    def launch_game(self):
         store_object = ['N', 'T', 'E']
         for ob in store_object:
             needle_ramdom_position = random.choice(self.laby.emptyBox())
@@ -48,7 +48,7 @@ class GameManager:
 
             # If the player find the gardian
             elif check_symbol == Guardian.GARDIAN:
-                self.guardian.sleeping_guardian(self.macgyver.bag)
+                self.guardian.macgyver_vs_guardian(self.macgyver.bag)
 
             else:
                 # replace symbole by space

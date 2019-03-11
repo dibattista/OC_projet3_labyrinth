@@ -2,8 +2,6 @@
 
 import pygame
 from pygame.locals import *
-import random
-
 
 from Player import Player
 from Guardian import Guardian

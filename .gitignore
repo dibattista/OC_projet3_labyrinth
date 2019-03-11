@@ -1,1 +1,7 @@
 env/
+GameManager.pyc
+Guardian.pyc
+Gui.pyc
+Labyrinth.pyc
+Object.pyc
+Player.pyc

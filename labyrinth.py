@@ -42,7 +42,7 @@ class Labyrinth:
         store_box = []
         for y, line in enumerate(self.store_lines):
             for x, symbol in enumerate(line):
-                if symbol == 'X':
+                if symbol == self.WALL:
                     store_box.append((y, x))
         return store_box
 

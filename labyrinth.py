@@ -1,7 +1,10 @@
 # coding=utf-8
 
+"""This module is the class Labyrinth"""
+
 
 class Labyrinth:
+    """This class store the labyrinth in list."""
     WALL = 'X'
 
     def __init__(self, data_file):

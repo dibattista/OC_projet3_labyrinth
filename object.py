@@ -1,4 +1,7 @@
 # coding=utf-8
+
+"""This module is the class Object"""
+
 import random
 
 

@@ -1,5 +1,7 @@
 # coding=utf-8
 
+"""This module is the class Player"""
+
 from pygame.locals import *
 
 

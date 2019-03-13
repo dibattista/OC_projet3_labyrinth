@@ -1,4 +1,7 @@
 # coding: utf-8
+
+"""This module is the class GameManager"""
+
 import random
 
 from Player import Player
@@ -7,6 +10,12 @@ from Guardian import Guardian
 
 
 class GameManager:
+    """
+        This is a class for launch a loop to playing the game.
+        Attributes:
+            laby (class): Allow to access of the class Labyrinth
+            The class Labyrinth build the Labyrinth of the game.
+    """
 
     def __init__(self, laby):
         self.laby = laby
@@ -14,7 +23,31 @@ class GameManager:
         self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
 
+        """
+              The constructor for GameManager class.
+                Parameters:
+                laby (class): Access of the class Labyrinth.
+                player_position(tuple): return the vertical and horizontal position of the player.
+                macgyver(class): Access of the class Player
+                guardian(class): Access of the class Guardian
+        """
+
     def launch_game(self):
+        """
+            The function continue the algorithm util while is true.
+            before the algorithm, add in the labyrinth, the objects in the random position
+            Algorithm:
+                print the labyrinth to see player move
+                store the old position of the player
+                store the new position of the player
+                find the symbol in the new position player
+                first condition if the symbol equal wall stop the player
+                second condition if the symbol equal one of the objects,
+                    add object in the player's bag and replace the object by the player
+                third condition if the symbol equal the guardian finish the game with two options to print:
+                    win or lose.
+                for all the other conditions move the player in this new place
+        """
         store_object = ['N', 'T', 'E']
         for ob in store_object:
             needle_ramdom_position = random.choice(self.laby.empty_box())

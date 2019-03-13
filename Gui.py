@@ -1,5 +1,7 @@
 # coding: utf-8
 
+"""This module is the class Gui"""
+
 import pygame
 from pygame.locals import QUIT, KEYDOWN
 

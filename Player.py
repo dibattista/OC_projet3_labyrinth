@@ -113,7 +113,7 @@ class Player:
         self.old_y = self.position_y
 
         while True:
-            player_move = input("Press touch to play r for right, l for left, u for update,d for down")
+            player_move = input("Press touch to play r for right, l for left, u for up, d for down")
             if player_move == 'r':
                 return self.move_right()
             elif player_move == 'l':
@@ -123,7 +123,7 @@ class Player:
             elif player_move == 'd':
                 return self.move_down()
             else:
-                print('Wrong key try r for right,l for left,u for update,d for down')
+                print('Wrong key try r for right,l for left,u for up, d for down')
 
     def move_player_gui(self, key):
         """

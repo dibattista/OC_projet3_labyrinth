@@ -43,7 +43,7 @@ class Gui:
         self.font_menu = pygame.font.SysFont('Arial', 15)
 
         self.window = pygame.display.set_mode(size)
-        pygame.display.set_caption("My First Game")
+        pygame.display.set_caption("Mac vs guardian")
         """
               Init pygame.
                 Parameters:

@@ -86,7 +86,6 @@ class Player:
                      The list bag.
         """
         self.bag.append(tool)
-        print('self.bag', self.bag)
         return self.bag
 
     def move_back(self):
@@ -114,7 +113,7 @@ class Player:
         self.old_y = self.position_y
 
         while True:
-            player_move = input("Press touch to play ")
+            player_move = input("Press touch to play r for right, l for left, u for update,d for down")
             if player_move == 'r':
                 return self.move_right()
             elif player_move == 'l':
@@ -124,7 +123,7 @@ class Player:
             elif player_move == 'd':
                 return self.move_down()
             else:
-                print('Wrong key try r,l,u,d')
+                print('Wrong key try r for right,l for left,u for update,d for down')
 
     def move_player_gui(self, key):
         """

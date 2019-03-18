@@ -28,7 +28,10 @@ In graphic mode:
 If you want to quit the game: `
 ```click on the red cross in the left corner.``
 
-To catch the object:
+To catch the object in terminal mode:
+``` pass on the letter N or T or E```
+
+To catch the object in terminal mode:
 ``` pass on the object```
 
 If you have all the three objects you will win if not you will be dead.
@@ -37,3 +40,9 @@ To play again you need to close the game and start again.
 
 The objects will move every time you close the game.
 
+## Terminal mode
+![alt text](img/terminal_mode.png)
+
+
+## Graphic mode
+![alt text](img/graphic_mode.png)

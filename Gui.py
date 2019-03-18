@@ -195,11 +195,12 @@ class Gui:
                 elif event.type == KEYDOWN:
                     old_position = self.macgyver.get_position()
                     new_position = self.macgyver.move_player_gui(event.key)
+                    if new_position is None:
+                        continue
+
                     check_symbol = self.laby.get_symbol(
                         new_position[0], new_position[1])
 
-                    if new_position is None:
-                        continue
                     if check_symbol == self.laby.WALL:
                         self.macgyver.move_back()
                         print('sorry try again')

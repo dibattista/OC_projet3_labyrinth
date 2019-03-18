@@ -198,7 +198,7 @@ class Gui:
                     check_symbol = self.laby.get_symbol(
                         new_position[0], new_position[1])
 
-                    if new_position == None:
+                    if new_position is None:
                         continue
                     if check_symbol == self.laby.WALL:
                         self.macgyver.move_back()

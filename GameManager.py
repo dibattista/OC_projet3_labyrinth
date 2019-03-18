@@ -34,7 +34,7 @@ class GameManager:
 
     def launch_game(self):
         """
-            The function continue the algorithm util while is true.
+            The method continue the algorithm util while is true.
             before the algorithm, add in the labyrinth, the objects in the random position
             Algorithm:
                 print the labyrinth to see player move
@@ -80,7 +80,7 @@ class GameManager:
                 self.laby.write_symbol(old_position[0], old_position[1], ' ')
 
             # If the player find the guardian
-            elif check_symbol == Guardian.GARDIAN:
+            elif check_symbol == Guardian.GUARDIAN:
                 self.guardian.macgyver_vs_guardian(self.macgyver.bag)
 
             else:

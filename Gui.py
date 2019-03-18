@@ -11,6 +11,12 @@ from Object import Object
 
 
 class Gui:
+    """
+        This is a class for launch a loop to playing the game in graphic mode.
+        Attributes:
+            laby (class): Allow to access of the class Labyrinth
+            The class Labyrinth build the Labyrinth of the game.
+    """
 
     def __init__(self, laby):
         self.laby = laby
@@ -18,9 +24,17 @@ class Gui:
         self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
         self.object = Object(laby)
-
-        #############################
-        # Init pygame
+        self.mac_bag = 0
+        """
+              The constructor for Gui class.
+                Parameters:
+                laby (class): Access of the class Labyrinth.
+                player_position(tuple): return the vertical and horizontal position of the player.
+                macgyver(class): Access of the class Player.
+                guardian(class): Access of the class Guardian.
+                object(class): Access of the class Object.
+                self.mac_bag(int): The number of object catch by the player.
+        """
         pygame.init()
         pygame.font.init()
         size = (900, 600)
@@ -30,9 +44,15 @@ class Gui:
 
         self.window = pygame.display.set_mode(size)
         pygame.display.set_caption("My First Game")
+        """
+              Init pygame.
+                Parameters:
+                size (class): Access of the class Labyrinth.
+                self.font_text_winner(pygame.font.Font): return the font of the message at the end of the game.
+                self.font_menu(pygame.font.Font): return the font of the menu.
+                self.window(pygame.Surface): Set the window of the game.
+        """
 
-        #############################
-        # Load all images
         self.fond = pygame.image.load("gui/background.png").convert()
         self.wall = pygame.image.load("gui/wall.png").convert_alpha()
         self.ether = pygame.image.load("gui/ether.png").convert_alpha()
@@ -42,49 +62,77 @@ class Gui:
         # character setup
         self.character = pygame.image.load("gui/macgyver.png").convert()
         self.position_character = self.character.get_rect()
-        self.mac_bag = 0
+        """
+              Load image.
+                Parameters:
+                self.fond: Load an image from background.png file.
+                self.wall: Load an image from wall.png file.
+                self.ether: Load an image from ether.png file.
+                self.needle: Load an image from needle.png file.
+                self.pipe: Load an image from pipe.png file.
+                self.guard: Load an image from guard.png file.
+                self.character: Load an image from macgyver.png file.
+                self.position_character: Returns a new rectangle covering the entire surface.
+                
+        """
 
-        #####################################
-        # Find all the position of the wall
         self.store_wall_position = []
         for box in self.laby.all_box():
             x_wall = box[0] * 40
             y_wall = box[1] * 40
             self.store_wall_position.append((y_wall, x_wall))
+        """Find the position for all walls in graphic mode."""
 
-        ######################################
-        # Find random position object in graphic and write in laby
         self.list_gadget = [
-            (self.object.needle_ramdom_position, self.needle),
-            (self.object.ether_ramdom_position, self.ether),
-            (self.object.pipe_ramdom_position, self.pipe)
+            (self.object.needle_random_position, self.needle),
+            (self.object.ether_random_position, self.ether),
+            (self.object.pipe_random_position, self.pipe)
         ]
+        """Find random position for the objects in graphic mode."""
         self.object.write_object_in_laby()
+        """Write the objects in labyrinth with this position."""
 
-        pygame.display.flip()
-
-    # Player
     def draw_character(self):
+        """
+               The method get the player position in the labyrinth.
+               Returns:
+                   new position x and y in graphic mode.
+        """
         player_position = self.laby.get_symbol_position(Player.GAMER)
         self.position_character.x = player_position[0] * 40
         self.position_character.y = player_position[1] * 40
 
-    # Guard
     def draw_guard(self):
-        position_guard = self.laby.get_symbol_position(Guardian.GARDIAN)
+        """
+               The method get the guardian position in the labyrinth.
+               Returns:
+                   new position x and y in graphic mode and add to the window.
+        """
+        position_guard = self.laby.get_symbol_position(Guardian.GUARDIAN)
         x_guard = position_guard[1] * 40
         y_guard = position_guard[0] * 40
         self.window.blit(self.guard, (y_guard, x_guard))
 
     def popup_message(self, text):
+        """
+               The method draw a rectangle with a text pass in argument.
+               Returns:
+                   add to the window.
+        """
         pygame.draw.rect(self.window, (0, 0, 0), (180, 200, 400, 200))
         self.window.blit(self.font_text_winner.render(
             text, True, (255, 255, 255)), (280, 280))
         pygame.display.update()
 
     def draw_menu(self):
-        # Menu
-        # draw rectangle to delete old value of self.mac_bag)
+        """
+               The method draw a menu of the game:
+               First draw a rectangle to delete all value of the player's bag.
+               Second draw a rectangle with five line of text.
+               Third in last line update the bag of the player.
+               Returns:
+                   add to the window.
+        """
         pygame.draw.rect(self.window, (0, 0, 0), (620, 40, 260, 300))
 
         text_menu = self.font_menu.render(
@@ -101,7 +149,6 @@ class Gui:
         self.window.blit(text_bag_one, (620, 140))
         self.window.blit(text_bag_two, (620, 160))
 
-        # Update the number of gadget
         text_bag_three = self.font_menu.render(
             'You have: ' + str(self.mac_bag) + ' gadget.',
             True, (255, 255, 255))
@@ -109,6 +156,33 @@ class Gui:
         pygame.display.update()
 
     def launch_game(self):
+        """
+             The method continue the algorithm util carry_on is true.
+             Algorithm:
+                 Create clocks that can manage FPS, frame per second.
+                 Loop all event the player will do in the keyboard
+                 if  the player click on the red cross the window will close.
+                 si other event on the keyboard:
+                    store the old position of the player
+                    store the new position of the player
+                    find the symbol in the new position player
+                    first condition if the symbol equal wall stop the player
+                        and move the player in the old position in the labyrinth
+                    second condition if the symbol equal one of the objects,
+                        add object in the player's bag
+                        and replace the object by the player in the labyrinth
+                        find the position in graphic mode and delete the object.
+                    third condition if the symbol equal the guardian finish
+                        the game with the guardian method and display the message in the rectangle.
+                    for all the other conditions move the player in this new place
+                 Display images:
+                    First the window of the game.
+                    Second the menu.
+                    Third the wall.
+                    Fourth the object.
+                    Fifth the player.
+                    Sixth the guard.
+         """
         carry_on = 1
         finish_game = 0
 
@@ -125,7 +199,6 @@ class Gui:
                     check_symbol = self.laby.get_symbol(
                         new_position[0], new_position[1])
 
-                    # If wall
                     if check_symbol == 'X':
                         self.macgyver.move_back()
                         print('sorry try again')
@@ -143,6 +216,7 @@ class Gui:
                         self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
                         # Delete object in graphic
+
                         x = new_position[0] * 40
                         y = new_position[1] * 40
                         position_gadget = (x, y)
@@ -150,8 +224,7 @@ class Gui:
                             if position_gadget == gadget[0]:
                                 self.list_gadget.remove(gadget)
 
-                    # If the player find the guardian
-                    elif check_symbol == Guardian.GARDIAN:
+                    elif check_symbol == Guardian.GUARDIAN:
                         finish_game = 1
                         result = self.guardian.macgyver_vs_guardian(
                             self.macgyver.bag)
@@ -163,16 +236,12 @@ class Gui:
                         self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
 
-            # Display images
-
             self.window.blit(self.fond, (0, 0))
             self.draw_menu()
 
-            # Wall
             for wall in self.store_wall_position:
                 self.window.blit(self.wall, (wall[0], wall[1]))
 
-            # Object
             for gadget in self.list_gadget:
                 self.window.blit(gadget[1], (gadget[0][0], gadget[0][1]))
 

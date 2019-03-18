@@ -2,12 +2,15 @@
 
 This project is the simple game and the first project I achieve in python.
 
-You need to have install in your computer: 
-- Python
+## Getting Started
 
-To Play you should:
 
-- Clone the project
+Clone the repo:
+``` https://github.com/dibattista/OC_projet3_labyrinth.git ```
+
+Get the requirement file:
+``` pip3 install -r requirements.txt```
+
 - open the project in terminal 
 - tape this command pour la version terminal: python3 main.py
 et 

@@ -1,6 +1,6 @@
 # OC_projet3_labyrinth
 
-This project is a game and the first project I achieve in python.
+This project is a game and the first project I achieved in python.
 
 ## Getting Started
 

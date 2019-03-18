@@ -82,6 +82,8 @@ class GameManager:
             # If the player find the guardian
             elif check_symbol == Guardian.GUARDIAN:
                 self.guardian.macgyver_vs_guardian(self.macgyver.bag)
+                return
+
 
             else:
                 # replace symbol by space

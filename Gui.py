@@ -199,7 +199,9 @@ class Gui:
                     check_symbol = self.laby.get_symbol(
                         new_position[0], new_position[1])
 
-                    if check_symbol == 'X':
+                    if new_position == None:
+                        continue
+                    if check_symbol == self.laby.WALL:
                         self.macgyver.move_back()
                         print('sorry try again')
                         continue
@@ -235,6 +237,7 @@ class Gui:
                             new_position[0], new_position[1], Player.GAMER)
                         self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
+
 
             self.window.blit(self.fond, (0, 0))
             self.draw_menu()

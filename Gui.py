@@ -38,6 +38,7 @@ class Gui:
         pygame.init()
         pygame.font.init()
         size = (900, 600)
+        self.clock = pygame.time.Clock().tick(30)
         # Font
         self.font_text_winner = pygame.font.SysFont('Arial', 25)
         self.font_menu = pygame.font.SysFont('Arial', 15)
@@ -187,8 +188,6 @@ class Gui:
         finish_game = 0
 
         while carry_on:
-            pygame.time.Clock().tick(30)
-
             for event in pygame.event.get():
                 if event.type == QUIT:
                     carry_on = 0
@@ -258,3 +257,7 @@ class Gui:
                 self.popup_message(msg)
 
             pygame.display.flip()
+            self.clock
+
+
+

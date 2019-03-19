@@ -160,9 +160,6 @@ class Gui:
         pygame.display.update()
 
     def launch_game(self):
-        start_ticks = pygame.time.get_ticks()
-
-
         """
              The method continue the algorithm util carry_on is true.
              Algorithm:
@@ -192,8 +189,6 @@ class Gui:
          """
 
         while self.carry_on:
-            seconds = (pygame.time.get_ticks() - start_ticks) / 1000  # calculate how many seconds
-            # print('seconds', seconds)
             for event in pygame.event.get():
                 if event.type == QUIT:
                     self.carry_on = 0
@@ -212,7 +207,6 @@ class Gui:
                         print('sorry try again')
                         continue
 
-                    # If a player find a object store it and delete
                     elif check_symbol == Object.TUBE \
                             or check_symbol == Object.ETHER \
                             or check_symbol == Object.NEEDLE:
@@ -232,6 +226,7 @@ class Gui:
                                 self.list_gadget.remove(gadget)
 
                     elif check_symbol == Guardian.GUARDIAN:
+                        start_ticks = pygame.time.get_ticks()
                         self.finish_game = 1
                         result = self.guardian.macgyver_vs_guardian(
                             self.macgyver.bag)
@@ -259,6 +254,7 @@ class Gui:
             # Guard
             self.draw_guard()
             if self.finish_game == 1:
+                seconds = (pygame.time.get_ticks() - start_ticks) / 1000  # calculate how many seconds
                 self.popup_message(msg)
                 print('second', seconds)  # print how many seconds
 

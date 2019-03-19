@@ -84,7 +84,6 @@ class GameManager:
                 self.guardian.macgyver_vs_guardian(self.macgyver.bag)
                 return
 
-
             else:
                 # replace symbol by space
                 self.laby.write_symbol(

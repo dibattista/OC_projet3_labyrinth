@@ -25,6 +25,8 @@ class Gui:
         self.guardian = Guardian()
         self.object = Object(laby)
         self.mac_bag = 0
+        self.finish_game = 0
+        self.carry_on = 1
         """
               The constructor for Gui class.
                 Parameters:
@@ -39,6 +41,7 @@ class Gui:
         pygame.font.init()
         size = (900, 600)
         self.clock = pygame.time.Clock().tick(30)
+
         # Font
         self.font_text_winner = pygame.font.SysFont('Arial', 25)
         self.font_menu = pygame.font.SysFont('Arial', 15)
@@ -157,6 +160,9 @@ class Gui:
         pygame.display.update()
 
     def launch_game(self):
+        start_ticks = pygame.time.get_ticks()
+
+
         """
              The method continue the algorithm util carry_on is true.
              Algorithm:
@@ -184,13 +190,13 @@ class Gui:
                     Fifth the player.
                     Sixth the guard.
          """
-        carry_on = 1
-        finish_game = 0
 
-        while carry_on:
+        while self.carry_on:
+            seconds = (pygame.time.get_ticks() - start_ticks) / 1000  # calculate how many seconds
+            # print('seconds', seconds)
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    carry_on = 0
+                    self.carry_on = 0
 
                 elif event.type == KEYDOWN:
                     old_position = self.macgyver.get_position()
@@ -217,7 +223,6 @@ class Gui:
                             new_position[0], new_position[1], Player.GAMER)
                         self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
-                        # Delete object in graphic
 
                         x = new_position[0] * 40
                         y = new_position[1] * 40
@@ -227,7 +232,7 @@ class Gui:
                                 self.list_gadget.remove(gadget)
 
                     elif check_symbol == Guardian.GUARDIAN:
-                        finish_game = 1
+                        self.finish_game = 1
                         result = self.guardian.macgyver_vs_guardian(
                             self.macgyver.bag)
                         msg = result
@@ -237,7 +242,6 @@ class Gui:
                             new_position[0], new_position[1], Player.GAMER)
                         self.laby.write_symbol(
                             old_position[0], old_position[1], ' ')
-
 
             self.window.blit(self.fond, (0, 0))
             self.draw_menu()
@@ -254,8 +258,12 @@ class Gui:
 
             # Guard
             self.draw_guard()
-            if finish_game == 1:
+            if self.finish_game == 1:
                 self.popup_message(msg)
+                print('second', seconds)  # print how many seconds
+
+                if seconds >= 10:  # if more than 10 seconds close the game
+                    self.carry_on = 0
 
             pygame.display.flip()
             self.clock

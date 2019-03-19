@@ -262,10 +262,10 @@ class Gui:
             # Guard
             self.draw_guard()
             if self.finish_game == 1:
-                # Close the game after 10 second
+                # Close the game after 5 second
                 seconds = (pygame.time.get_ticks() - start_ticks) / 1000
                 self.popup_message(msg)
-                if seconds >= 10:
+                if seconds >= 5:
                     self.carry_on = 0
 
             pygame.display.flip()

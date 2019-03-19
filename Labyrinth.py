@@ -5,7 +5,8 @@
 
 class Labyrinth:
     """
-        This class store the labyrinth in list and the modified with these methods.
+        This class store the labyrinth in list
+            and the modified with these methods.
         class attribute:
             WALL: (str) define the wall in the labyrinth
     """
@@ -19,7 +20,8 @@ class Labyrinth:
               The constructor for Labyrinth class.
                 Parameters:
                 data_file (str): The labyrinth draw in txt.
-                self.store_lines (list) All line of the labyrinth store in this list.
+                self.store_lines (list) All line of
+                    the labyrinth store in this list.
         """
 
         with open(self.file) as files:
@@ -57,8 +59,10 @@ class Labyrinth:
 
     def empty_box(self):
         """
-            The method iterate in the list of all line of the labyrinth and find the number of line or column  in it.
-            Because line don't give the number of the line but only that you have in it.
+            The method iterate in the list of all line
+                of the labyrinth and find the number of line or column  in it.
+            Because line don't give the number of the line
+                but only that you have in it.
             Returns:
                 The list of the empty box in the labyrinth.
         """
@@ -71,8 +75,10 @@ class Labyrinth:
 
     def all_box(self):
         """
-             The method iterate in the list of all line of the labyrinth and find the number of line or column in it.
-             Because line don't give the number of the line but only that you have in it.
+             The method iterate in the list of all line
+                of the labyrinth and find the number of line or column in it.
+             Because line don't give the number of the line
+                but only that you have in it.
              Returns:
                  The list of the all box in the labyrinth.
          """

@@ -27,7 +27,8 @@ class GameManager:
               The constructor for GameManager class.
                 Parameters:
                 laby (class): Access of the class Labyrinth.
-                player_position(tuple): return the vertical and horizontal position of the player.
+                player_position(tuple): return the vertical
+                    and horizontal position of the player.
                 macgyver(class): Access of the class Player
                 guardian(class): Access of the class Guardian
         """
@@ -35,7 +36,8 @@ class GameManager:
     def launch_game(self):
         """
             The method continue the algorithm util while is true.
-            before the algorithm, add in the labyrinth, the objects in the random position
+            before the algorithm, add in the labyrinth,
+                the objects in the random position
             Algorithm:
                 print the labyrinth to see player move
                 store the old position of the player
@@ -43,9 +45,10 @@ class GameManager:
                 find the symbol in the new position player
                 first condition if the symbol equal wall stop the player
                 second condition if the symbol equal one of the objects,
-                    add object in the player's bag and replace the object by the player
-                third condition if the symbol equal the guardian finish the game with two options to print:
-                    win or lose.
+                    add object in the player's bag
+                    and replace the object by the player
+                third condition if the symbol equal the guardian
+                    finish the game with two options to print: win or lose.
                 for all the other conditions move the player in this new place
         """
         store_object = ['N', 'T', 'E']
@@ -60,8 +63,8 @@ class GameManager:
             old_position = self.macgyver.get_position()
             # New position of gamer
             new_position = self.macgyver.move_player()
-            check_symbol = self.laby.get_symbol(new_position[0],
-                                               new_position[1])
+            check_symbol = self.laby.get_symbol(
+                new_position[0], new_position[1])
 
             # If a player find a wall try again
             if check_symbol == self.laby.WALL:

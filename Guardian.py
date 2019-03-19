@@ -23,7 +23,8 @@ class Guardian:
             The method check if the bag of the player contain all objects.
             With the method 'all' of python.
             Returns:
-                A string if the case is True or a other string for others cases.
+                A string if the case is True
+                    or a other string for others cases.
 
         """
         winner_msg = '    YOU WIN!'

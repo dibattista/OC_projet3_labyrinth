@@ -31,11 +31,15 @@ class Gui:
               The constructor for Gui class.
                 Parameters:
                 laby (class): Access of the class Labyrinth.
-                player_position(tuple): return the vertical and horizontal position of the player.
+                player_position(tuple): return the vertical and
+                    horizontal position of the player.
                 macgyver(class): Access of the class Player.
                 guardian(class): Access of the class Guardian.
                 object(class): Access of the class Object.
                 self.mac_bag(int): The number of object catch by the player.
+                self.finish_game(int): Help to open the text
+                    in of end of the game
+                self.carry_on(int): Allow to continue or stop the game
         """
         pygame.init()
         pygame.font.init()
@@ -52,7 +56,8 @@ class Gui:
               Init pygame.
                 Parameters:
                 size (class): Access of the class Labyrinth.
-                self.font_text_winner(pygame.font.Font): return the font of the message at the end of the game.
+                self.font_text_winner(pygame.font.Font):
+                    return the font of the message at the end of the game.
                 self.font_menu(pygame.font.Font): return the font of the menu.
                 self.window(pygame.Surface): Set the window of the game.
         """
@@ -76,8 +81,8 @@ class Gui:
                 self.pipe: Load an image from pipe.png file.
                 self.guard: Load an image from guard.png file.
                 self.character: Load an image from macgyver.png file.
-                self.position_character: Returns a new rectangle covering the entire surface.
-                
+                self.position_character:
+                    Returns a new rectangle covering the entire surface.
         """
 
         self.store_wall_position = []
@@ -171,14 +176,17 @@ class Gui:
                     store the new position of the player
                     find the symbol in the new position player
                     first condition if the symbol equal wall stop the player
-                        and move the player in the old position in the labyrinth
+                        and move the player in the old position
                     second condition if the symbol equal one of the objects,
                         add object in the player's bag
                         and replace the object by the player in the labyrinth
-                        find the position in graphic mode and delete the object.
+                        find the position in graphic mode
+                        and delete the object.
                     third condition if the symbol equal the guardian finish
-                        the game with the guardian method and display the message in the rectangle.
-                    for all the other conditions move the player in this new place
+                        the game with the guardian method
+                        and display the message in the rectangle.
+                    for all the other conditions move the player
+                        in this new place
                  Display images:
                     First the window of the game.
                     Second the menu.
@@ -254,15 +262,11 @@ class Gui:
             # Guard
             self.draw_guard()
             if self.finish_game == 1:
-                seconds = (pygame.time.get_ticks() - start_ticks) / 1000  # calculate how many seconds
+                # Close the game after 10 second
+                seconds = (pygame.time.get_ticks() - start_ticks) / 1000
                 self.popup_message(msg)
-                print('second', seconds)  # print how many seconds
-
-                if seconds >= 10:  # if more than 10 seconds close the game
+                if seconds >= 10:
                     self.carry_on = 0
 
             pygame.display.flip()
             self.clock
-
-
-

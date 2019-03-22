@@ -25,7 +25,7 @@ d to move down`
 In graphic mode: 
 ```Use the arrow of the keyboard.```
 
-If you want to quit the game: `
+If you want to quit the game:
 ```click on the red cross in the left corner.``
 
 To catch the tools in terminal mode:
@@ -35,8 +35,11 @@ To catch the tools in graphic mode:
 ``` pass on the tool```
 
 To modify the labyrinth:
+
 ``` Open the labyrinth.txt```.
+
 ``` Add or remove the 'X' to change the position of the wall in the labyrinth```
+
 ```Move the 'M' to change the position of the player```
 
 If you have all the three tools you will win if not you will be dead.

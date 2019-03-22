@@ -35,7 +35,9 @@ To catch the tools in graphic mode:
 ``` pass on the tool```
 
 To modify the labyrinth:
-Open the labyrinth.txt and change the wall inside the labyrinth as you wish.
+``` Open the labyrinth.txt```.
+``` Add or remove the 'X' to change the position of the wall in the labyrinth```
+```Move the 'M' to change the position of the player```
 
 If you have all the three tools you will win if not you will be dead.
 

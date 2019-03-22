@@ -33,7 +33,7 @@ class Player:
                 self.position_y (int): the position y of
                     the player in the labyrinth
                 self.bag (list): list will contain
-                    the objects catch by the player
+                    the tools catch by the player
                 self.old_x (int): the old position x
                     of the player in the labyrinth
                 self.old_y (int): the old position y
@@ -88,9 +88,9 @@ class Player:
         """
         return self.position_x, self.position_y
 
-    def add_object(self, tool):
+    def add_tool(self, tool):
         """
-                The method add a object to the list bag.
+                The method add a tool to the list bag.
                 Returns:
                      The list bag.
         """

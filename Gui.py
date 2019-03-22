@@ -7,7 +7,7 @@ from pygame.locals import QUIT, KEYDOWN
 
 from Player import Player
 from Guardian import Guardian
-from Object import Object
+from Tool import Tool
 
 
 class Gui:
@@ -23,7 +23,7 @@ class Gui:
         player_position = laby.get_symbol_position(Player.GAMER)
         self.macgyver = Player(player_position[0], player_position[1])
         self.guardian = Guardian()
-        self.object = Object(laby)
+        self.tool = Tool(laby)
         self.mac_bag = 0
         self.finish_game = 0
         self.carry_on = 1
@@ -35,8 +35,8 @@ class Gui:
                     horizontal position of the player.
                 macgyver(class): Access of the class Player.
                 guardian(class): Access of the class Guardian.
-                object(class): Access of the class Object.
-                self.mac_bag(int): The number of object catch by the player.
+                Tool(class): Access of the class tool.
+                self.mac_bag(int): The number of tool catch by the player.
                 self.finish_game(int): Help to open the text
                     in of end of the game
                 self.carry_on(int): Allow to continue or stop the game
@@ -93,13 +93,13 @@ class Gui:
         """Find the position for all walls in graphic mode."""
 
         self.list_gadget = [
-            (self.object.needle_random_position, self.needle),
-            (self.object.ether_random_position, self.ether),
-            (self.object.pipe_random_position, self.pipe)
+            (self.tool.needle_random_position, self.needle),
+            (self.tool.ether_random_position, self.ether),
+            (self.tool.pipe_random_position, self.pipe)
         ]
-        """Find random position for the objects in graphic mode."""
-        self.object.write_object_in_laby()
-        """Write the objects in labyrinth with this position."""
+        """Find random position for the tools in graphic mode."""
+        self.tool.write_tool_in_laby()
+        """Write the tools in labyrinth with this position."""
 
     def draw_character(self):
         """
@@ -177,11 +177,11 @@ class Gui:
                     find the symbol in the new position player
                     first condition if the symbol equal wall stop the player
                         and move the player in the old position
-                    second condition if the symbol equal one of the objects,
-                        add object in the player's bag
-                        and replace the object by the player in the labyrinth
+                    second condition if the symbol equal one of the tools,
+                        add tool in the player's bag
+                        and replace the tool by the player in the labyrinth
                         find the position in graphic mode
-                        and delete the object.
+                        and delete the tool.
                     third condition if the symbol equal the guardian finish
                         the game with the guardian method
                         and display the message in the rectangle.
@@ -191,7 +191,7 @@ class Gui:
                     First the window of the game.
                     Second the menu.
                     Third the wall.
-                    Fourth the object.
+                    Fourth the tool.
                     Fifth the player.
                     Sixth the guard.
          """
@@ -215,10 +215,10 @@ class Gui:
                         print('sorry try again')
                         continue
 
-                    elif check_symbol == Object.TUBE \
-                            or check_symbol == Object.ETHER \
-                            or check_symbol == Object.NEEDLE:
-                        self.macgyver.add_object(check_symbol)
+                    elif check_symbol == Tool.TUBE \
+                            or check_symbol == Tool.ETHER \
+                            or check_symbol == Tool.NEEDLE:
+                        self.macgyver.add_tool(check_symbol)
                         self.mac_bag = len(self.macgyver.bag)
 
                         self.laby.write_symbol(

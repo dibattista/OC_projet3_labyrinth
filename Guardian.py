@@ -10,17 +10,17 @@ class Guardian:
     GUARDIAN = 'G'
 
     def __init__(self):
-        self.list_all_objects = ['E', 'T', 'N']
+        self.list_all_tools = ['E', 'T', 'N']
 
         """
                 The constructor for Guardian class.
                   Parameters:
-                  self.list_all_objects (list): The list of object.
+                  self.list_all_tools (list): The list of Tool.
         """
 
-    def macgyver_vs_guardian(self, store_object):
+    def macgyver_vs_guardian(self, store_tool):
         """
-            The method check if the bag of the player contain all objects.
+            The method check if the bag of the player contain all tools.
             With the method 'all' of python.
             Returns:
                 A string if the case is True
@@ -30,7 +30,7 @@ class Guardian:
         winner_msg = '    YOU WIN!'
         lose_msg = 'YOU ARE DEAD!'
         result = all(
-            elem in store_object for elem in self.list_all_objects)
+            elem in store_tool for elem in self.list_all_tools)
         if result:
             print(winner_msg)
             return winner_msg

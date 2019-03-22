@@ -28,17 +28,20 @@ In graphic mode:
 If you want to quit the game: `
 ```click on the red cross in the left corner.``
 
-To catch the object in terminal mode:
+To catch the Object in terminal mode:
 ``` pass on the letter N or T or E```
 
-To catch the object in terminal mode:
-``` pass on the object```
+To catch the Object in graphic mode:
+``` pass on the Object```
 
-If you have all the three objects you will win if not you will be dead.
+To modify the labyrinth:
+Open the labyrinth.txt and change the wall inside the labyrinth as you wish.
+
+If you have all the three Objects you will win if not you will be dead.
 
 To play again you need to close the game and start again.
 
-The objects will move every time you close the game.
+The Objects will move every time you close the game.
 
 ## Terminal mode
 ![alt text](img/terminal_mode.png)

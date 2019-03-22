@@ -5,7 +5,7 @@
 import random
 
 from Player import Player
-from Object import Object
+from Tool import Tool
 from Guardian import Guardian
 
 
@@ -37,22 +37,22 @@ class GameManager:
         """
             The method continue the algorithm util while is true.
             before the algorithm, add in the labyrinth,
-                the objects in the random position
+                the tools in the random position
             Algorithm:
                 print the labyrinth to see player move
                 store the old position of the player
                 store the new position of the player
                 find the symbol in the new position player
                 first condition if the symbol equal wall stop the player
-                second condition if the symbol equal one of the objects,
-                    add object in the player's bag
-                    and replace the object by the player
+                second condition if the symbol equal one of the tools,
+                    add tool in the player's bag
+                    and replace the tool by the player
                 third condition if the symbol equal the guardian
                     finish the game with two options to print: win or lose.
                 for all the other conditions move the player in this new place
         """
-        store_object = ['N', 'T', 'E']
-        for ob in store_object:
+        store_tool = ['N', 'T', 'E']
+        for ob in store_tool:
             needle_ramdom_position = random.choice(self.laby.empty_box())
             self.laby.write_symbol(
                 needle_ramdom_position[1], needle_ramdom_position[0], ob)
@@ -72,11 +72,11 @@ class GameManager:
                 print('Sorry wrong place try again')
                 continue
 
-            # If a player find a object store it and delete from laby
-            elif check_symbol == Object.TUBE or \
-                    check_symbol == Object.ETHER or \
-                    check_symbol == Object.NEEDLE:
-                self.macgyver.add_object(check_symbol)
+            # If a player find a Tool store it and delete from laby
+            elif check_symbol == Tool.TUBE or \
+                    check_symbol == Tool.ETHER or \
+                    check_symbol == Tool.NEEDLE:
+                self.macgyver.add_tool(check_symbol)
 
                 self.laby.write_symbol(
                     new_position[0], new_position[1], Player.GAMER)

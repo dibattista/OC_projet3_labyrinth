@@ -22,11 +22,11 @@ To move in terminal:
 `r: to turn right ` ` l to turn left` ` u to move up`
 d to move down`
 
-In graphic mode: 
+To move in graphic mode: 
 ```Use the arrow of the keyboard.```
 
 If you want to quit the game:
-```click on the red cross in the left corner.``
+```click on the red cross in the left corner.```
 
 To catch the tools in terminal mode:
 ``` pass on the letter N or T or E```

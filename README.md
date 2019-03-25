@@ -42,6 +42,8 @@ To modify the labyrinth:
 
 ```Move the 'M' to change the position of the player```
 
+```Move the 'G' to change the position of the player```
+
 If you have all the three tools you will win if not you will be dead.
 
 To play again you need to close the game and start again.
